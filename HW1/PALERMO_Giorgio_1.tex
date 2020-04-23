@@ -1,0 +1,378 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english,italian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, all colors=blue]{hyperref} %referenze linkate
+\usepackage{booktabs}
+\usepackage{siunitx}  %notaz. espon. con \num{} e unità di misura in SI con \si{}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{bm}
+\usepackage{caption} 
+\usepackage{indentfirst}
+\usepackage{physics} 
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{pst-plot}
+\usepackage{comment} %per usare l'ambiente {comment}
+\usepackage{float} 
+\usepackage{subfig}
+\usepackage[americanvoltages]{circuitikz} %per disegnare circuiti
+\usepackage{tikz}
+\usepackage{mathtools} %per allineare su più linee in ambiente {align} o {align*}
+\usepackage{cancel}
+\renewcommand{\CancelColor}{\color{lightgray}}
+%\setlength{\parindent}{0cm}
+
+
+\graphicspath{{Figure/}}
+\captionsetup{format=hang,labelfont={sf,bf},font=small}
+\captionsetup{tableposition=top,figureposition=bottom,font=small}
+\captionsetup[table]{skip=8pt}
+%Comando per l'unit\'a di misura A^1\2
+\newcommand{\radamp}[0]{\ \text{A}^{1/2}}
+\newcommand{\kz}{K^0}
+\newcommand{\bkz}{\bar{K}^0}
+\newcommand{\kzs}{\ket{K^0}}
+\newcommand{\bkzs}{\ket{\bar{K}^0}}
+%\renewcommand{\dag}[1]{{#1}^\dagger}
+
+
+\title{Domanda SubNuc}
+\author{Giorgio Palermo}
+
+
+
+
+\begin{document}
+\hypersetup{linkcolor = black}
+\hypersetup{linkcolor = blue}
+
+\begin{center}
+    \textbf{MASTER'S DEGREE IN PHYSICS}
+    
+    Academic Year 2019-2020
+    
+    \medskip
+    \textbf{Introduction to Many Body Theory}
+\end{center}
+
+\vspace{0.8cm}
+Student: Giorgio Palermo
+
+Student ID: 1238258
+
+Date: April 7, 2019
+
+\bigskip
+
+\begin{center}
+\textbf{HOMEWORK 1}
+\end{center}
+
+
+\section*{First exercise}
+\noindent The generic Hamiltonian operator in the second quantization formalism can be written as 
+\[
+ \hat{H} = \hat{T} + \hat{V} = \sum_{i,j} b^\dag_i\mel{i}{T}{j}b_j + \frac{1}{2} \sum_{i,j,k,l}b^\dag_ib^\dag_j\mel{ij}{V}{kl}b_l b_k
+\]
+in the following steps we are going to show that the commutator $\comm*{\hat{N}}{\hat{H}}$ is null.
+First of all we remember that de total number operator $\hat{N}$ is defined as the sum of the single particle number operators $n_k = b^\dag_k b_k$ where $b^\dag$ and $b$ are the single particle creation and annhilation operators (we suppress the operator sign '$\,\hat{\cdot}\,$' for simplicity): $\hat{N} = \sum_{i} b^\dag_i b_i.$
+We start by looking at the kinetic term of the Hamiltonian; the commutator with $\hat{N}$ looks like:
+\begin{align}
+	\comm{\hat{N}}{\hat{H}} &=\sum_{k,i,j} \comm{b^\dag_k b_k}{b^\dag_i \mel{i}{T}{j} b_j} \\
+					 &=  \sum_{k,i,j}	\mel{i}{T}{j} \comm{b^\dag_k b_k}{b^\dag_i b_j} \label{eq:factor1}
+\end{align}
+where in \eqref{eq:factor1} we gathered the matrix element as a factor using the linearity of the commutator.
+We can show that this sum is null by showing that the commutator part of the expression vanishes:
+\begin{align}
+\comm{b^\dag_k b_k}{b^\dag_i b_j} &= b^\dag_k b_k b^\dag_i b_j - b^\dag_i b_j b^\dag_k b_k\\
+		&= b^\dag_k \pqty*{\delta_{k,i} + b^\dag_i b_k} b_j - b^\dag_i \pqty*{\delta_{j,k} + b^\dag_k b_j} b_k\\
+		&= b^\dag_k b_j \delta_{k,i} - b^\dag_i b_k \delta_{j,k} + b^\dag_k b^\dag_i b_k b_j - b^\dag_i b^\dag_k b_j b_k \\
+		&= b^\dag_i b_j - b^\dag_i b_j \pm b^\dag_i b^\dag_k b_k b_j \mp b^\dag_i b^\dag_k b_k b_i = 0 \label{eq:scambio}
+\end{align}
+where in \eqref{eq:scambio} we put plus and minus signs since we exchanged two creation/annhilation operators: the direct case $(+, -)$ is the bosonic one, while the inverse $(-, +)$ is the fermionic one, into which we recalled the anticommutation relation $\acomm{b_i}{b_j} = 0.$
+
+Following a similar reasoning, we can show that the sum describing the potential part of the commutator $\comm{\hat{N}}{\hat{V}}$ vanishes by showing that each term is equal to zero, namely:
+\begin{align}
+\comm{n_k}{b^\dag_i b^\dag_j b_l b_m} 
+&= b^\dag_k b_k b^\dag_i b^\dag_j b_l b_m - b^\dag_i b^\dag_j b_l b_m b^\dag_k b_k  \\
+&= b^\dag_k \pqty*{\delta_{i,k} + b^\dag_i b_k} b^\dag_j b_l b_m - b^\dag_i b^\dag_j b_l \pqty*{\delta_{m,k} + b^\dag_k b_m} b_k \\
+&= \cancel{b^\dag_i b^\dag_j b_l b_m} - \cancel{b^\dag_i b^\dag_j b_l b_m} + b^\dag_k b^\dag_i b_k b^\dag_j b_l b_m -  b^\dag_i b^\dag_j b_l b^\dag_k b_m b_k \\
+&= b^\dag_k b^\dag_i \pqty*{\delta_{k,j} + b^\dag_j b_k} b_l b_m - b^\dag_i b^\dag_j \pqty*{\delta_{l,k} + b^\dag_k b_l} b_m b_k \\
+&= b^\dag_j b^\dag_i b_l b_m - b^\dag_i b^\dag_j  b_m b_l + b^\dag_k b^\dag_i b^\dag_j b_k b_l b_m - b^\dag_i b^\dag_j b^\dag_k b_l b_m b_k \label{eq:scambio1} \\
+&= \cancel{b^\dag_i b^\dag_j b_m b_l} - \cancel{b^\dag_i b^\dag_j  b_m b_l} + \bcancel{b^\dag_i b^\dag_j b^\dag_k b_k b_l b_m} - \bcancel{b^\dag_i b^\dag_j b^\dag_k b_k b_l b_m} =0 \label{eq:scambio2}
+\end{align}
+Note that from \eqref{eq:scambio1} to \eqref{eq:scambio2} no $'\, \pm\,'$ signs arise because the terms in the two lines differ by an even number of exchanges in the operator order.
+
+
+
+
+\section*{Second Exercise}
+\noindent The Hamiltonian of the 1D Jellium model can be expressed as
+\begin{equation} \hat{H} = \hat{H}_b + \hat{H}_{el-b} + \hat{T}_{el} + \hat{V}_el\end{equation}
+in the following paragraphs we are going to compute the expectation value $E$ of this Hamiltonian for a given Fermi state $\ket{F}$ of N particles.
+
+
+\subsection*{Background and electron - background terms}
+\noindent The contribution of the positive charges is described in the Jellium model as a uniform positive background of density $\rho_b(x) = e n(x)$ where $e$ is the elementar electric charge and $n(x) =n = N/V$ is the numeric density of ions that we consider as a constant.
+The interaction between the charges forming the positive background is coulombian and in the continuous approximation we follow the total energy contribution due to the interaction between the positive charges can be written as
+\begin{align}
+E_b &= \frac{e^2}{2}\int \dd{x} \dd{x'} \frac{n(x)n(x')}{\abs{x-x'}}\\
+\end{align}
+where we considered the Coulomb interaction in the CGS system, where the $(4\pi\epsilon_0)^{-1}$ factor is equal to 1:
+\begin{equation}
+V(\abs{x-x'}) = \frac{1}{\abs{x-x'}}.
+\end{equation}
+other calculations give:
+\begin{align}
+E_b &= \frac{e^2n^2}{2} \int_{-\infty}^{\infty} \dd{x} 2\int_0^\infty \dd{y}\frac{1}{\abs{y}}\\
+& = e^2 \pqty{\frac{N}{L}}^2 L \int_0^\infty \dd{y}\frac{1}{\abs{y}}\\
+& = \frac{e^2N^2}{L}\int_0^\infty \dd{y}\frac{1}{\abs{y}}
+\end{align}
+where we leave the last integral indicated as it is a divergent quantity.
+
+The interaction between the uniform background and the electrons treated in a similar way, introducing the electron density $\rho_{el}(x)= -e n_{el}(x) = -e\sum_{i=1}^N \delta(x-r_i)$ where $r_i$ is the position of the i-esim electron.
+The electron-background interaction energy contribution to the total Hamiltonian is then:
+\begin{align}
+E_{el-b} & = -e^2\int \dd{x} \dd{x'}\frac{n_b(x)n_{el}(x')}{\abs{x-x'}}\\
+&= -\frac{e^2 N}{L}\int_{-\infty}^\infty \dd{x} \int_{-\infty}^\infty \dd{x'}\sum_{i=1}^{N}\frac{\delta(x'-r_i)}{\abs{x-x'}}\\
+&\stackrel{(a)}{=} -\frac{2e^2 N}{L}\sum_{i=1}^{N}\int_{0}^\infty \dd{x}\frac{1}{\abs{x-r_i}}\\
+&\stackrel{(b)}{=} -\frac{2e^2 N}{L}\sum_{i=1}^{N}\int_{0}^\infty \dd{y}\frac{1}{\abs{y}}\\
+&= -\frac{2e^2 N^2}{L}\int_{0}^\infty \dd{y}\frac{1}{\abs{y}}\\
+\end{align}
+where in $(a)$ we made the substitution $y = x-r_i$ and in $(b)$ we considered the sum over $i$ of $N$ integrals as $N$ identrical contributions.
+
+\subsection*{Electron kinetic term}
+
+\noindent To find the electronic part of the total Hamiltonian is useful to consider the electronic Hamiltonian in the second quantization form, choosing as interaction potential the one occurring between two different electrons at position $x$ and $x'.$
+
+\noindent To find the mean value af the energy for such an Hamiltonian it is useful to consider the electrons as plane waves, namely
+\begin{align}
+\phi_{k,\lambda} &= \frac{1}{\sqrt{L}}\,e^{ikx}\eta_\lambda = \ket{k\lambda} &\hat{p}^2 \ket{k\lambda} = \hbar^2k^2\ket{k\lambda}
+\end{align}
+which are eigenstates of the momentum operator $\hat{p};$ $\eta_\lambda$ is the spin function relative to the $\lambda$ spin value.
+
+\noindent The kinetic term of the Hamiltonian is therefore:
+\begin{align}
+\hat{T} &= \sum_{\substack{k\lambda\\k'\lambda'}} \mel**{k\lambda}{\frac{\hat{p}^2}{2m}}{k'\lambda'} a^\dag_{k\lambda}a _{k'\lambda'}\\
+ &=\sum_{\substack{k\lambda\\k'\lambda'}} \frac{\hbar^2k^2}{2m} \delta_{kk'}\delta_{\lambda \lambda'} a^\dag_{k\lambda}a _{k'\lambda'}\\
+ &=\sum_{k\lambda} \frac{\hbar^2k^2}{2m} \hat{n}_{k\lambda} \label{eq:kinetic1}
+\end{align}
+
+The total energy contribution to the Jellium Hamiltonian due to the motion of the electrons $E_0^{el}$is the mean value of $\hat{T}$ over the Fermi ground state $\ket{F}, $ which is characterized, according to the Pauli exclusion principle, by N/2 momentum eigenstates each one occupied by two particles with different spin number.
+The maximum momentum value $p_F$ assumed by a particle in the system is called Fermi momentum; the correspondig wave vector is ${k_F} = {p_F}/\hbar.$
+The value of $k_F$ is bounded to the number of particles by the relation \begin{equation} \sum_{\abs{k} < k_F} 1 = \frac{N}{2}\ \quad \stackrel{L\rightarrow \infty}{\longrightarrow} \quad \frac{L}{2\pi} \int_{-k_F}^{k_F} \dd{k} = \frac{N}{2}\end{equation} which leads to \begin{equation}   k_F = \frac{\pi}{2}\frac{N}{L}.\end{equation}
+
+Thanks to the aforementioned properties the action of the number operator on the state $\ket{F}$ (with $\braket{F} = 1$) is \begin{equation}\begin{cases} \hat{n}_{\vb{k},\lambda}\ket{F} = \ket{F}  &k<k_F \\ 0 &\text{otherwise} \end{cases}\end{equation} and the kinetic energy of the electrons is therefore
+\begin{align}
+E_0^{el}&=\sum_{\substack{\abs{k}<k_F\\\lambda}}\frac{\hbar^2k^2}{2m}\mel{F}{\hat{n}_{k\lambda}}{F}\\
+&=2 \sum_{\abs{k}<k_F} \frac{\hbar^2k^2}{2m}\\
+&\stackrel{L\rightarrow\infty}{\approx} 2 \frac{L}{2\pi}\int_{-k_F}^{k_F} \dd{k} \frac{\hbar^2k^2}{2m}\\
+\end{align}
+from which is easy to compute the kinetic energy contribution $E_0:$ \begin{equation} E_0^{el} = \frac{2L}{3\pi}\frac{\hbar^2}{2m}k_F^3 = \frac{1}{3}\mathcal{E}_F N \end{equation} where $\mathcal{E}_F = \hbar^2 k_F^2 / 2m.$
+Introducing the new dimensionless variable $r_s = r_0/a_0$ with $r_0 = L/N$ one can write the latter relation enhancing the dependence on $N$ and $r_s:$ \begin{equation} E_0^{el} =   \frac{\pi^2}{24}\frac{e^2}{2 a_0} \frac{N}{r_s^2}. \end{equation}
+
+\subsection*{Electron potential term}
+\noindent The potential contribution $\hat{V}$ due to the electron-electron interaction in the second quantization form can be written as follows:
+\begin{equation}
+\hat{V} = \frac{1}{2} \sum_{\substack{k\lambda,p\mu\\k'\lambda',p'\mu'}}\mel{k'\lambda',p'\mu'}{V}{k\lambda,p\mu} a^\dag_{k'\lambda'}a^\dag_{p'\mu'}a_{p\mu}a_{k\lambda}.
+\end{equation}
+We now proceed computing $\mel{k'\lambda',p'\mu'}{V}{k\lambda,p\mu}$ using plane waves as single particle wavefunctions:
+\begin{align}
+\mel{k'\lambda',p'\mu'}{V}{k\lambda,p\mu} &= \int \dd{x}\dd{x'} \phi^\dag_{k'\lambda'}(x) \phi^\dag_{p'\mu'}(x')V(\abs{x-x'}) \phi_{p\mu}(x')\phi_{k\lambda}(x)\delta_{\lambda\lambda'}\delta_{\mu\mu'}\\
+&= \frac{e^2}{L^2}\int \dd{x}\dd{x'}\frac{e^{i(k-k')x}\,e^{i(p-p')x'}}{\abs{x-x'}}\delta_{\lambda\lambda'}\delta_{\mu\mu'}\\
+&=\frac{e^2}{L^2} \int \dd{y} \frac{e^{i(k-k')y}}{\abs{y}} \delta_{\lambda\lambda'}\delta_{\mu\mu'}{\int\dd{x'} e^{i(k-k'+p-p')x'}} 
+\end{align}
+where $y=x-x'$ and the the latter integrand is an oscillating complex function, which gives a non null result only when the argument is null, namely when $k-k' = p'-p;$ in such a situation the result of the integral over $x'$ is $L.$
+The resulting matrix element is then
+\begin{equation}
+\mel{k'\lambda',p'\mu'}{V}{k\lambda,p\mu} =\frac{e^2}{L} \int \dd{y} \frac{e^{-iqy}}{\abs{y}} \,\delta_{k-k',p'-p}\delta_{\lambda\lambda'}\delta_{\mu\mu'}
+\end{equation}
+where we set $k'-k = q.$
+
+\noindent At this point, two situations must be distinguished: the one into which the two particles interact with themselves (exchanged momentum $q=0,$ direct term) and the one into which there is a non null exchange of momentum (exchange term).
+The two matrix elements for the direct and the exchange term are:
+\begin{align}
+\mel{k'\lambda',p'\mu'}{V}{k\lambda,p\mu}_{dir} &=\frac{e^2}{L} \pqty{\int \dd{y} \frac{1}{\abs{y}}} \,\delta_{k,k'}\delta_{p,p'}\delta_{\lambda\lambda'}\delta_{\mu\mu'}\\
+\mel{k'\lambda',p'\mu'}{V}{k\lambda,p\mu}_{exch} &=\frac{e^2}{L} \pqty{\int \dd{y} \frac{e^{-iqy}}{\abs{y}}} \,\delta_{k-k',p'-p}\delta_{\lambda\lambda'}\delta_{\mu\mu'}
+\end{align}
+
+\noindent Let's now concentrate over the direct term, computing the expectation value of $\hat{V}_{dir}$ over the $\ket{F}$ state:
+\begin{align}
+\mel{F}{\hat{T}_{dir}}{F} &= \frac{e^2}{2L} \pqty{\int \dd{y} \frac{e^{1}}{\abs{y}}} \sum_{\substack{k,p\\ \lambda\mu}} \mel{F}{a^\dag_{k\lambda}a^\dag_{p\mu}a_{p\mu}a_{k\lambda}}{F}\\
+&= \frac{e^2}{2L} \pqty{\int \dd{y} \frac{1}{\abs{y}}} \sum_{\substack{k,p\\ \lambda\mu}} \mel{F}{\hat{n}_{k\lambda}\hat{n}_{p\mu} - \delta_{kp}\delta_{\mu\lambda}\hat{n}_{k\lambda}}{F}\\
+&= 2\frac{e^2}{2L} \pqty{\int \dd{y} \frac{1}{\abs{y}}}\pqty{N^2 - N}.
+\end{align}
+We see immediately that the term proportional to N vanishes in the thermodynamic limit, and the final contribution from the direct term is:
+\begin{align}
+E_{dir}^{el} &= \lim_{\substack{N,L \rightarrow \infty\\N\L = cost}} \frac{\mel{F}{\hat{V}_{dir}}{F}}{N} = \pqty{ \frac{e^2N}{L} -\cancel{\frac{1}{L}}} \pqty{\int \dd{y} \frac{1}{\abs{y}}} \\
+&= \frac{e^2N}{L}\pqty{\int \dd{y} \frac{1}{\abs{y}}}
+\end{align}
+which is a divergent quantity; however this is not a problem since, as we will see later, cancellation occurs in the total Jellium Hamiltonian.
+
+
+
+The exchange term contains an integral which is the Fourier transform of the Coulomb potential:
+\begin{equation}
+\int \dd{y} \frac{e^{-iqy}}{\abs{y}} = -2\pqty{\gamma + \log{\abs{q}}};
+\end{equation}
+using this result we can compute the total energy due to the exchange term between electrons, which is:
+\begin{align}
+E_1^{el} &= \mel{F}{\hat{V}_{exch}}{F} \\
+&= -\frac{2e^2}{L}\sum_{\substack{k\lambda,p\mu\\k'\lambda',p'\mu'\\q\neq0}} \pqty{\gamma - \log{\abs{q}}}\delta_{k-k',p'-p}\delta_{\lambda\lambda'}\delta_{\mu\mu'} \mel{F}{a^\dag_{k',\lambda'}a^\dag_{p',\mu'}a_{p,\mu}a_{k,\lambda}}{F}\\
+&= -\frac{2e^2}{L}\sum_{\substack{k,p,q\\\lambda,\mu \\ q\neq0}}\pqty{\gamma - \log{\abs{q}}}\mel{F}{a^\dag_{k+q,\lambda}a^\dag_{p-q,\mu}a_{p,\mu}a_{k,\lambda}}{F}
+\end{align}
+At this point we make some observations taking advantage of some properties of Fermions.
+The first observation is that each particle created inside the system must have a momentum which modulus is below the Fermi level; the second is that the $\mel{F}{\hat{V}_{exch}}{F}$ matrix element can be non null only if the creation operators exactly fill the holes created by the destruction ones, namely we have two cases:
+\begin{align} 
+&\pqty{a} = \begin{cases}
+k+q = k & \lambda = \lambda\\
+p-q = p & \mu = \mu
+\end{cases} &
+\qquad \pqty{b}=\begin{cases}
+k+q=p & \lambda= \mu\\
+p-q = k & \mu = \lambda
+\end{cases}
+\end{align}
+The first one refers to the direct term we alredy treated; the second one is of interest now.
+In particular we see that we must impose the equality of the spins of the created and destroyed particles.
+The expression we get for the energy is
+\begin{equation}
+E_1^{el} = -\frac{4e^2}{L}\sum_{\substack{\abs{k}\leq k_F\\ \abs{k+q}\leq k_F\\q\neq0}}\pqty{\gamma - \log{\abs{q}}}\mel{F}{a^\dag_{k+q,\lambda}a^\dag_{k,\lambda}a_{k+q,\lambda}a_{k,\lambda}}{F}.
+\end{equation}
+We now exploit the anticommutation relation for fermions, remembering that $q\neq0:$
+\begin{equation}
+a^\dag_{k,\lambda}a_{k+q,\lambda} = -a_{k+q,\lambda}a^\dag_{k,\lambda} +\cancel{\delta_{k,k+q}}
+\end{equation}
+which leads us to:
+\begin{align}
+E_1^{el} &= \frac{4e^2}{L}\sum_{\substack{\abs{k}\leq k_F\\ \abs{k+q}\leq k_F\\q\neq0}}\pqty{\gamma - \log{\abs{q}}}\mel{F}{\hat{n}_{k+q,\lambda}\hat{n}_{k,\lambda}}{F}\\
+&= \frac{4e^2}{L}\sum_{\substack{\abs{k}\leq k_F\\ \abs{k+q}\leq k_F\\q\neq0}}\pqty{\gamma - \log{\abs{q}}}.
+\end{align}
+For the computation of the sum we take advantage of the large size limit, which allows us to approximate it as an integral; in this limit we can forget about the $q\neq0$ condition since it has null measure w.r. to the integral:
+\begin{align}
+E_1^{el} &= \frac{e^2L}{\pi^2}\int\dd{k} \dd{q} \pqty{\gamma - \log{\abs{q}}}\theta\pqty{k_F - \abs{k}}\theta\pqty{k_F - \abs{k+q}}\\
+& =  \frac{e^2L}{\pi^2}\int_{-k_F}^{k_F}\dd{k} \int_{-k_F - k}^{k_F - k}\dd{q} \pqty{\gamma - \log{\abs{q}}}\\
+& = \frac{e^2L}{\pi^2} 2\gamma k_F^2 +\frac{e^2 L}{\pi^2} \int_{-k_F}^{k_F}\dd{k} \int_{-k_F - k}^{k_F - k}\dd{q} \log{\abs{q}}\\
+& = \frac{e^2L}{\pi^2} 2\gamma k_F^2 +\frac{e^2L}{\pi^2} \int_{-k_F}^{k_F}\dd{k} -2k + (k_F+k)\log(k_F + k)+  (k_F-k)\log(k_F-k) \\
+& = \frac{4e^2 L}{\pi^2} k_F^2 \pqty{\gamma-\frac{3}{2} +\log\pqty{2k_F}}
+\end{align}
+The same result can be rewritten in terms of the dimensionless variable $r_s$ defined above:
+\begin{equation}
+E_1^{el} = \frac{e^2N}{a_0r_s} \pqty{\log\pqty{\frac{\pi}{a_0r_s}} + \gamma-\frac{3}{2} }
+\end{equation}
+
+\subsection*{Conclusion}
+
+\noindent In conclusion, the contributions we found for the Hamiltonian \[\hat{H} = \hat{H}_b + \hat{H}_{el-b} + \hat{T}_{el} + \hat{V}_el\] of the 1D Jellium model are:
+\begin{align}
+E_b &= \frac{e^2N^2}{L}\int_0^\infty \dd{y}\frac{1}{\abs{y}}\label{eq:Eb}\\
+E_{el-b} &= -\frac{2e^2 N^2}{L}\int_{0}^\infty \dd{y}\frac{1}{\abs{y}}\label{eq:Eel-b}\\
+E_0^{el} &= \frac{1}{3}\mathcal{E}_F N\\
+E_{dir}^{el}&= \frac{e^2N}{L}\int \dd{y} \frac{1}{\abs{y}}\label{eq:Eel-dir}\\
+E_1^{el} &= \frac{4e^2 L}{\pi^2} k_F^2 \pqty{\gamma-\frac{3}{2} +\log\pqty{2k_F}}
+\end{align}
+We see immediately that the divergent contributions \eqref{eq:Eb}, \eqref{eq:Eel-b} and \eqref{eq:Eel-dir} cancel out, leaving a well defined expression for the total energy, which we report here in $r_s$ units:
+\begin{equation}
+E = E_0^{el} + E_{dir}^{el} = \frac{e^2N}{2a_0 r_s^2}\bqty{\frac{\pi^2}{24} + r_s\pqty{2\log\pqty{\frac{\pi}{a_0r_s}}+ 2\gamma - 3}}.
+\end{equation}
+What we see in particular is that already in the first order of $r_s$ expansion the energy goes as $E\sim r_s \log(r_s);$ this, as seen also for the second order expansion of the three dimensional Jellium model (pg. 70 of the notes), is a logarithmic divergence and therefore a case more complex than the simple expansion into power series.
+
+
+% \newpage
+% %%					POTENTIAL CONTRIBUTION
+% The first order energy correction to the ground state energy $E_0$ is given by the potential contribution by the Hamiltonian:
+% \begin{equation}	
+% E_1 = \mel{F}{\hat{H}_1}{F} = -\frac{2e^2}{L} \sum_{\substack{k,p,q \\ q\neq 0}}\pqty{\gamma + \log(\abs{q})}\bra{F}a^\dag_{k+q,\lambda} a^\dag_{p-q,\mu}a_{p,\mu} a_{k,\lambda}\ket{F}
+% \end{equation}
+% if we consider the $q\neq0$ case (exchange case, the $q=0$ term refers to the direct case) we notice that, summing over $p$ the only term that survive is the one that satisfy
+% \begin{equation}
+% 	\begin{cases}
+% 	k+q = p & \lambda = \mu\\
+% 	p-q = p & \mu = \lambda
+% 	\end{cases}
+% \end{equation}
+% and therefore the energy correction reduces to
+% \begin{equation}	
+% E_1  = -\frac{2e^2}{L} \sum_{\substack{k,q \\ q\neq 0}}\pqty{\gamma + \log(\abs{q})}\bra{F}a^\dag_{k+q,\lambda} a^\dag_{k,\lambda}a_{k+q,\lambda} a_{k,\lambda}\ket{F}
+% \end{equation}
+% which can be rewritten, using the anticommutation relation and the $q\neq0$ condition, as
+% \begin{equation}	
+% E_1  = -\frac{2e^2}{L} \sum_{\substack{k,q \\ q\neq 0}}\pqty{\gamma + \log(\abs{q})}\bra{F}\hat{n}_{k+q,\lambda}\hat{n}_{k,\lambda}\ket{F}.
+% \end{equation}
+% The remainimg matrix element is non null only if the two number operators act on act on particles inside the Fermi sphere, namely $\abs{k} < k_F$ and $\abs{k+q} < k_f.$
+% We now exploit this condition together with the large size limit in order to write the following expression:
+% \begin{align}	
+% E_1  &= -\frac{4e^2}{L} \pqty{\frac{L}{2\pi}}^2 \iint \dd{k}\dd{q} \pqty{\gamma + \log(\abs{q})}\theta\pqty{k_F-\abs{k}}\, \theta\pqty{k_F - \abs{k+q}}\\
+% &= \frac{4e^2L}{\pqty{2\pi}^2}\int \dd{q} \pqty{\gamma + \log(\abs{q})}\int \dd{p} \theta\pqty{k_F-\abs{p-q/2}}\, \theta\pqty{k_F - \abs{p+q/2}}\\
+% &= \frac{4e^2L}{\pqty{2\pi}^2}\int \dd{q} \pqty{\gamma + \log(\abs{q})}\, 2\pqty{k_F -q/2}
+% \end{align}
+% the last integral can be split into the sum of two terms; the first gives
+% \begin{equation}
+% \int_0^{k_F}
+% \end{equation}
+
+% \vspace{1.5cm}
+
+% The hamiltonian of the 1D jellium model is 
+% \begin{equation}
+% \hat{H} = \sum_{\vb{k},\lambda} \frac{\hbar^2 \vb{k}^2}{2m}a^\dag_{\vb{k},\lambda} a_{\vb{k},\lambda} + \frac{e^2}{2V} \sum_{\vb{k,p,q}} \sum_{\lambda,\mu}\frac{4\pi}{\vb{q}^2}a^\dag_{\vb{k}+\vb{q},\lambda} a^\dag_{\vb{p}-\vb{q},\mu}a_{\vb{p},\mu}a_{\vb{k},\lambda}
+% \end{equation}
+
+% \begin{equation}
+% \begin{cases}
+% \hat{n}_{k\lambda}\ket{F} = \ket{F} &\abs{k}\leq k_F\\
+% 0 &\text{otherwise} 
+% \end{cases}
+% \end{equation}
+% which allows us to limit the sum in \eqref{eq:kinetic1} to the $k$ values with absolute value smaller than $k_F:$
+% \begin{align}
+% E_0^{el}&=\sum_{\substack{\abs{k}<k_F\\\lambda}}\frac{\hbar^2k^2}{2m}\mel{F}{\hat{n}_{k\lambda}}{F}\\
+% &=2 \sum_{\abs{k}<k_F} \frac{\hbar^2k^2}{2m}\\
+% &\approx 2 \frac{L}{2\pi}\int_{-k_F}^{k_F} \dd{k} \frac{\hbar^2k^2}{2m}\\
+% &= \frac{2}{3}\frac{L}{\pi}\frac{\hbar^2}{2m}k_F^3\\
+% &= \frac{2}{3}\mathcal{E}_F N \label{eq:kinetik_fermi}
+% \end{align}
+% where in \eqref{eq:kinetik_fermi} we defined $\mathcal{E}_F = \hbar^2k_F^2/2m.$
+
+
+
+%%				KINETIC CONTRIBUTION
+% \begin{equation}
+% E_0 = \mel{F}{\hat{H}_0}{F} = \sum_{\vb{k},\lambda} \frac{\hbar^2}{2m}\mel{F}{\hat{n}_{\vb{k},\lambda}}{F} \label{eq:kinetic}
+% \end{equation}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

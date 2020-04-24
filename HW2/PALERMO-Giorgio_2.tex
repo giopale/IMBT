@@ -84,9 +84,74 @@ Date: April 28, 2019
 \end{center}
 
 \section*{First Exercise}
-\noindent To compute the Green function for a non interacting system we must start from the 
+\noindent To compute the Green function for a non interacting system we must start from the general expression for the green function of an homogeneous system:
+\begin{align}
+G_{\alpha\beta}(\vb{k},\omega) = \hbar V \bqty{\frac{\mel{\phi_0}{\hat{\psi}_\alpha(0)}{n,\vb{k}}\mel{n,\vb{k}}{\hat{\psi}^\dag_\beta(0)}{\phi_0}}{\hbar \omega -\mu -\mathcal{E}_{\vb{k}}^{(N+1)}+i\eta} + 
+\frac{\mel{\phi_0}{\hat{\psi}^\dag_\beta(0)}{n,-\vb{k}}\mel{n,-\vb{k}}{\hat{\psi}_\alpha(0)}{\phi_0}}{\hbar \omega -\mu - \mathcal{E}_{\vb{k}}^{(N-1)} -i\eta}}
+\label{eq:greenTotal}
+\end{align}
+where the fields are defined as follows:
+\begin{align}
+&\hat{\psi}_\alpha(0) = \sum_{\vb{k}'} \varphi_{\vb{k}'}(0)\hat{c}_{\vb{k}',\alpha} 
+&\hat{\psi}^\dag_\beta(0)= \sum_{\vb{k}''} \varphi_{\vb{k}''}(0)\hat{c}^\dag_{\vb{k}',\alpha}.
+\end{align}
+We notice that for a non interacting system a complete set of eigenstates for the momentum operator $\hat{\vec{P}}$ is also a complete set of eigenstates for the Hamiltonian $\hat{H};$ the excited states of the system are identified just by the $\vb{k}$ index and thus the sum over $n$ in \eqref{eq:greenTotal} is unnecessary and can be omitted.
+
+\noindent Let's proceed computing the matrix elements in \eqref{eq:greenTotal}.
+The first semplification of the expression is given by the dyad $\dyad{\vb{k}}{\vb{k}},$ which "selects" in the summations over $\vb{k}'$ and $\vb{k}''$ present in the definitions of the fields only the terms with momentum equal to $\vb{k}:$
+\begin{align}
+\mel{\phi_0}{\hat{\psi}_\alpha(0)}{\vb{k}}\mel{\vb{k}}{\hat{\psi}^\dag_\beta(0)}{\phi_0} &= \sum_{\vb{k}'\vb{k}''}\mel{\phi_0}{\varphi_{\vb{k}'}(0)\hat{c}_{\vb{k}',\alpha}}{\vb{k}} \mel{\vb{k}}{\varphi^\dag_{\vb{k}''}(0)\hat{c}^\dag_{\vb{k}'',\beta}}{\phi_0}\Theta(k - k_F) \label{eq:mel_first_step}\\
+&=\sum_{\vb{k}',\vb{k}''} \varphi_{\vb{k}'}(0)\varphi^\dag_{\vb{k}''}(0)\braket{\vb{k}',\alpha}{\vb{k}}\braket{\vb{k}}{\vb{k}'',\beta}\Theta(k - k_F)\\
+&=\sum_{\vb{k}',\vb{k}''} \varphi_{\vb{k}'}(0)\varphi^\dag_{\vb{k}''}(0) \delta_{\alpha,\beta}\delta_{\vb{k}',\vb{k}}\delta_{\vb{k}'',\vb{k}}\Theta(k - k_F)\\
+&=\abs{\varphi_{\vb{k}}(0)}^2 \delta_{\alpha,\beta}\Theta(k-k_F).
+\end{align}
+In \eqref{eq:mel_first_step} we introduced the $\Theta(k - k_F):$ this is due to the fact that the field operators are acting in both the matrix elements as creation operators over a filled Fermi sphere: in this situation all contributions to the sum like $\hat{c}^\dag_{\vb{k}}\ket{\vb{k}}$ for $k <k_F$ are annihilated due to the exclusion principle.
+The second couple of matrix elements in \eqref{eq:greenTotal} is computed similarly:
+\begin{equation}
+\mel{\phi_0}{\hat{\psi}^\dag_\beta(0)}{n,-\vb{k}}\mel{n,-\vb{k}}{\hat{\psi}_\alpha(0)}{\phi_0} = \abs{\varphi_{-\vb{k}}(0)}^2\delta_{\alpha,\beta} \Theta(k_F - k);
+\end{equation}
+in this case the limitation to the sum is applied to all the values of $k$ above the Fermi level, since the ladder operators act in both the matrix element as destruction operators on the ground state $\ket{\phi_0}.$
+
+The denominators both contain an addend which is the excitation energy of the system with $N+1$ particles ($N-1$ respectively).
+This term can be rewtitten as a function of the momentum $k,$ since in a non interacting system it indicizes the excited states:
+\begin{align}
+\mathcal{E}_{\vb{k}}^{(N+1)} &= E_{\vb{k}}^{(N+1)} - E^{(N+1)}\\
+&= E^{(N+1)}_{\vb{k}} - E^{(N)} - \pqty{E^{(N+1)} - E^{(N)}}\\
+&= \mathcal{E}_{\vb{k}}^0 - \mathcal{E}_{F}^0\\
+&= \frac{\hbar^2}{2m} \pqty{k^2 - k_F^2}
+\end{align}
+and similarly for the $\mathcal{E}_{\vb{k}}^{(N-1)}$ term:
+\begin{equation}
+\mathcal{E}_{-\vb{k}}^{(N-1)} =  \frac{\hbar^2}{2m} \pqty{k_F^2 - k^2}.
+\end{equation}
+The chemical potential $\mu$ is assumed equal for the $N \rightarrow N+1$ and $N \rightarrow N-1$ excitations:
+\begin{equation}
+\mu = E^{(N+1)} - E^{(N)}=E^{(N-1)} - E^{(N)} =\frac{\hbar^2k_F^2}{2m}
+\end{equation}
+
+
+
+
+\newpage
+\section{Second Exercise}
+
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

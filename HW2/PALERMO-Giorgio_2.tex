@@ -118,22 +118,94 @@ This term can be rewtitten as a function of the momentum $k,$ since in a non int
 \mathcal{E}_{\vb{k}}^{(N+1)} &= E_{\vb{k}}^{(N+1)} - E^{(N+1)}\\
 &= E^{(N+1)}_{\vb{k}} - E^{(N)} - \pqty{E^{(N+1)} - E^{(N)}}\\
 &= \mathcal{E}_{\vb{k}}^0 - \mathcal{E}_{F}^0\\
-&= \frac{\hbar^2}{2m} \pqty{k^2 - k_F^2}
+&= \frac{\hbar^2}{2m} \pqty{k^2 - k_F^2} \label{eq:excit_ener}
 \end{align}
-and similarly for the $\mathcal{E}_{\vb{k}}^{(N-1)}$ term:
+and similarly for the $\mathcal{E}_{-\vb{k}}^{(N-1)}$ term:
 \begin{equation}
 \mathcal{E}_{-\vb{k}}^{(N-1)} =  \frac{\hbar^2}{2m} \pqty{k_F^2 - k^2}.
 \end{equation}
 The chemical potential $\mu$ is assumed equal for the $N \rightarrow N+1$ and $N \rightarrow N-1$ excitations:
 \begin{equation}
-\mu = E^{(N+1)} - E^{(N)}=E^{(N-1)} - E^{(N)} =\frac{\hbar^2k_F^2}{2m}
+\mu = E^{(N+1)} - E^{(N)}=E^{(N-1)} - E^{(N)} =\frac{\hbar^2k_F^2}{2m} \label{eq:chem_pot}
 \end{equation}
+Substituting the epressions \eqref{eq:excit_ener} and \eqref{eq:chem_pot} in the first denominator of \eqref{eq:greenTotal} one finds
+\begin{equation}
+\hbar\omega - mu -\mathcal{E}_k^{(N+1)} +i \eta \,= \,\hbar\omega -\frac{\hbar^2k^2_F}{2m} - \frac{\hbar^2}{2m}\pqty{k^2 - k_F^2} + i\eta \,=\, \hbar\pqty{\omega - \omega_k} + i\eta.
+\end{equation}
+The derivation for the other denominator is equivalent.
+
+Gathering the results together, one finds the Green function for an homogeneous non interacting system:
+\begin{equation}
+iG_{\alpha,\beta}^0(\vb{k},\omega) =  V \abs{\varphi_{\vb{k}}(0) }^2  \bqty{\frac{\Theta\pqty{k-k_F}}{\omega - \omega_k + i\eta} + \frac{\Theta\pqty{k_F-k}}{\omega - \omega_k - i\eta}   } \delta_{\alpha,\beta}.
+\end{equation}
+In the last expression we canceled out the $\hbar$ factors, redefining $\hbar\eta\rightarrow\eta,$ since it is a quantity tending to zero and its value is not relevant for the calculation.
+In the special case of electrons, which we described as plane waves
+\begin{equation}
+\varphi_{\vb{k}}(\vb{x}) = \frac{1}{\sqrt{V}}e^{i \vb{k}\cdot\vb{x}}
+\end{equation}
+the prefactor $\abs{\varphi_{\vb{k}}(0) }^2 $ reads:
+\begin{equation}
+\abs{\varphi_{\vb{k}}(0) }^2 = V^{-1}
+\end{equation}
+and this leads us to the well known expression for the Green function of a non interacting system of electrons:
+\begin{equation}
+iG_{\alpha,\beta}^0(\vb{k},\omega) = \delta_{\alpha,\beta} \bqty{\frac{\Theta\pqty{k-k_F}}{\omega - \omega_k + i\eta} + \frac{\Theta\pqty{k_F-k}}{\omega - \omega_k - i\eta}   } .
+\end{equation}
+
+
+
+
 
 
 
 
 \newpage
 \section{Second Exercise}
+
+\noindent In the following steps we are going to compute the mean value of the total number operator $\hat{N}$ and the total energy $E$ of an non interacting system of electrons.
+
+The density for a generic operator $\hat{J} $ in second quantization is expressed as a function of the first quantized operator $J_{\alpha,\beta}$
+\begin{equation}
+\hat{j}(\vb{x}) = \hat{\psi}^\dag_\beta(\vb{x}) J_{\beta\alpha}(\vb{x})\hat{\psi}_\alpha(\vb{x});
+\end{equation}
+given this expression the mean value of the $\hat{j}(\vb{x})$ operator density over the ground state $\ket{\phi_0}$ can be expressed as:
+\begin{equation}
+\mel{\psi_0}{\hat{j}(\vb{x})}{\psi_0} = \pm i \lim_{\substack{\vb{x}'\rightarrow \vb{x}\\t'\rightarrow t^+}} \Tr\bqty{J(\vb{x})G(\vb{x},t,\vb{x}',t')} \label{eq:meanvalue}
+\end{equation}
+where the $'+'$ is for bosons and the $'-'$ for fermions.
+
+The total number operator density is:
+\begin{align}
+&\hat{N} = \int \dd{\vb{x}} n(\vb{x}); &\hat{n}(\vb{x}) = \hat{\psi}^\dag_\beta(\vb{x}) \delta_{\beta\alpha}\hat{\psi}_\alpha(\vb{x})
+\end{align}
+and thus we can compute its mean value for a non interacting system of electrons using \eqref{eq:meanvalue}:
+\begin{align}
+\mel{\psi_0}{\hat{n}(\vb{x})}{\psi_0} &= - i \lim_{\substack{\vb{x}'\rightarrow \vb{x}\\t'\rightarrow t^+}} \sum_{\alpha,\beta} \delta_{\alpha\beta} G^0_{\beta\alpha}(\vb{x},t,\vb{x}',t')\\
+&=- i \lim_{\substack{\vb{x}'\rightarrow \vb{x}\\t'\rightarrow t^+}} \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \frac{1}{V} \sum_{\vb{k}}e^{i\vb{k}\cdot(\vb{x} - \vb{x'})}e^{-i\omega_k (t-t')} \times\\
+&\quad\times\bqty{\Theta(t-t')\Theta(k-k_F) - \Theta(t'-t)\Theta(k_F - k)}.
+\end{align}
+Performing the time limit the term relative to $\Theta(t-t')$ vanishes and the time dependent exponential is evaluated to one; applying the constraint on the $\vb{k}$ sum given by $\Theta(k_F - k)$ we can write:
+\begin{equation}
+\mel{\psi_0}{\hat{n}(\vb{x})}{\psi_0} = \frac{1}{V} \lim_{\vb{x}'\rightarrow \vb{x}} \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \sum_{\abs{\vb{k}}< k_F} e^{i\vb{k}\cdot(\vb{x} - \vb{x'})}
+\end{equation}
+which, performing the final spatial limit, becomes:
+\begin{equation}
+\mel{\psi_0}{\hat{n}(\vb{x})}{\psi_0} = \frac{1}{V} \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \sum_{\abs{\vb{k}}< k_F} 1.
+\end{equation}
+An integration over $\vb{x}$ allows us to pass from the mean value of $\hat{n}(\vb{x})$ to the one of $\hat{N}:$
+\begin{align}
+\mel{\psi_0}{\hat{N}}{\psi_0} &= \int \dd{x}\frac{1}{V} \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \sum_{\abs{\vb{k}}< k_F} 1\\
+&= \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \sum_{\abs{\vb{k}}< k_F} 1
+\end{align}
+The remaining sum over $\vb{k}$ is none but the number $N$ of $\vb{k}$ states inside the Fermi sphere, while the sum over $\alpha$ and $\beta$ is the trace of the identity of the spin space, namely the spin space dimension, which is equal to $2s+1$ for half-integer values.
+The mean value of the number operator $\hat{N}$ for a non interacting system of electrons is:
+\begin{equation}
+\mel{\psi_0}{\hat{N}}{\psi_0} = 2N.
+\end{equation}
+
+
+
+
 
 
 \end{document}

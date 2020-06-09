@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1587810507 "PALERMO-Giorgio_2.tex" "PALERMO-Giorgio_2.pdf" "PALERMO-Giorgio_2" 1587810508
-  "/dev/null" 1587810473 0 d41d8cd98f00b204e9800998ecf8427e ""
+["pdflatex"] 1588069323 "PALERMO-Giorgio_2.tex" "PALERMO-Giorgio_2.pdf" "PALERMO-Giorgio_2" 1591468308
+  "/dev/null" 1591468299 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -232,11 +232,11 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1585740542 4259635 b50a9d52a101e1756fd4f6b9fe33bc98 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "PALERMO-Giorgio_2.aux" 1587810508 1151 20dc09da21f6b4a324ce85ee3aeb5a3b "pdflatex"
-  "PALERMO-Giorgio_2.out" 1587810508 50 af932bc50d63900fc43c7af88f952e63 "pdflatex"
-  "PALERMO-Giorgio_2.tex" 1587810506 10835 d26e537a9bc475e7e8476d6ea3973f1c ""
+  "PALERMO-Giorgio_2.aux" 1588069325 1151 20dc09da21f6b4a324ce85ee3aeb5a3b "pdflatex"
+  "PALERMO-Giorgio_2.out" 1588069325 50 af932bc50d63900fc43c7af88f952e63 "pdflatex"
+  "PALERMO-Giorgio_2.tex" 1588069323 12755 e66fd9d963ecc234fe9e6711e3e96727 ""
   (generated)
   "PALERMO-Giorgio_2.log"
+  "PALERMO-Giorgio_2.aux"
   "PALERMO-Giorgio_2.out"
   "PALERMO-Giorgio_2.pdf"
-  "PALERMO-Giorgio_2.aux"

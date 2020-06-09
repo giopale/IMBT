@@ -75,7 +75,7 @@ Student: Giorgio Palermo
 
 Student ID: 1238258
 
-Date: April 28, 2019
+Date: April 28, 2020
 
 \bigskip
 
@@ -84,13 +84,13 @@ Date: April 28, 2019
 \end{center}
 
 \section*{First Exercise}
-\noindent To compute the Green function for a non interacting system we must start from the general expression for the green function of an homogeneous system:
+\noindent To compute the Green function for a non interacting homogeneous system we must start from the general expression for the green function of an homogeneous system:
 \begin{align}
-G_{\alpha\beta}(\vb{k},\omega) = \hbar V \bqty{\frac{\mel{\phi_0}{\hat{\psi}_\alpha(0)}{n,\vb{k}}\mel{n,\vb{k}}{\hat{\psi}^\dag_\beta(0)}{\phi_0}}{\hbar \omega -\mu -\mathcal{E}_{\vb{k}}^{(N+1)}+i\eta} + 
+G_{\alpha\beta}(\vb{k},\omega) = \hbar V \sum_n\bqty{\frac{\mel{\phi_0}{\hat{\psi}_\alpha(0)}{n,\vb{k}}\mel{n,\vb{k}}{\hat{\psi}^\dag_\beta(0)}{\phi_0}}{\hbar \omega -\mu -\mathcal{E}_{\vb{k}}^{(N+1)}+i\eta} + 
 \frac{\mel{\phi_0}{\hat{\psi}^\dag_\beta(0)}{n,-\vb{k}}\mel{n,-\vb{k}}{\hat{\psi}_\alpha(0)}{\phi_0}}{\hbar \omega -\mu - \mathcal{E}_{\vb{k}}^{(N-1)} -i\eta}}
 \label{eq:greenTotal}
 \end{align}
-where the fields are defined as follows:
+where the fields are defined in terms of the single particle wavefunctions $\varphi_{\vb{k}}(\vb{x})$ as follows:
 \begin{align}
 &\hat{\psi}_\alpha(0) = \sum_{\vb{k}'} \varphi_{\vb{k}'}(0)\hat{c}_{\vb{k}',\alpha} 
 &\hat{\psi}^\dag_\beta(0)= \sum_{\vb{k}''} \varphi_{\vb{k}''}(0)\hat{c}^\dag_{\vb{k}',\alpha}.
@@ -98,14 +98,14 @@ where the fields are defined as follows:
 We notice that for a non interacting system a complete set of eigenstates for the momentum operator $\hat{\vec{P}}$ is also a complete set of eigenstates for the Hamiltonian $\hat{H};$ the excited states of the system are identified just by the $\vb{k}$ index and thus the sum over $n$ in \eqref{eq:greenTotal} is unnecessary and can be omitted.
 
 \noindent Let's proceed computing the matrix elements in \eqref{eq:greenTotal}.
-The first semplification of the expression is given by the dyad $\dyad{\vb{k}}{\vb{k}},$ which "selects" in the summations over $\vb{k}'$ and $\vb{k}''$ present in the definitions of the fields only the terms with momentum equal to $\vb{k}:$
+The first semplification of the expression is given by the dyad $\dyad{\vb{k}}{\vb{k}},$ which "selects" in the summations over $\vb{k}'$ and $\vb{k}'',$ introduced by the definitions of the fields, the only terms with momentum equal to $\vb{k}:$
 \begin{align}
 \mel{\phi_0}{\hat{\psi}_\alpha(0)}{\vb{k}}\mel{\vb{k}}{\hat{\psi}^\dag_\beta(0)}{\phi_0} &= \sum_{\vb{k}'\vb{k}''}\mel{\phi_0}{\varphi_{\vb{k}'}(0)\hat{c}_{\vb{k}',\alpha}}{\vb{k}} \mel{\vb{k}}{\varphi^\dag_{\vb{k}''}(0)\hat{c}^\dag_{\vb{k}'',\beta}}{\phi_0}\Theta(k - k_F) \label{eq:mel_first_step}\\
 &=\sum_{\vb{k}',\vb{k}''} \varphi_{\vb{k}'}(0)\varphi^\dag_{\vb{k}''}(0)\braket{\vb{k}',\alpha}{\vb{k}}\braket{\vb{k}}{\vb{k}'',\beta}\Theta(k - k_F)\\
 &=\sum_{\vb{k}',\vb{k}''} \varphi_{\vb{k}'}(0)\varphi^\dag_{\vb{k}''}(0) \delta_{\alpha,\beta}\delta_{\vb{k}',\vb{k}}\delta_{\vb{k}'',\vb{k}}\Theta(k - k_F)\\
 &=\abs{\varphi_{\vb{k}}(0)}^2 \delta_{\alpha,\beta}\Theta(k-k_F).
 \end{align}
-In \eqref{eq:mel_first_step} we introduced the $\Theta(k - k_F):$ this is due to the fact that the field operators are acting in both the matrix elements as creation operators over a filled Fermi sphere: in this situation all contributions to the sum like $\hat{c}^\dag_{\vb{k}}\ket{\vb{k}}$ for $k <k_F$ are annihilated due to the exclusion principle.
+In \eqref{eq:mel_first_step} we introduced the $\Theta(k - k_F):$ this is due to the fact that the field operators are acting in both the matrix elements as creation operators over a filled Fermi sphere: in this situation all contributions to the sum like $\hat{c}^\dag_{\vb{k}}\ket{\phi_0}$ for $k <k_F$ are annihilated due to the exclusion principle.
 The second couple of matrix elements in \eqref{eq:greenTotal} is computed similarly:
 \begin{equation}
 \mel{\phi_0}{\hat{\psi}^\dag_\beta(0)}{n,-\vb{k}}\mel{n,-\vb{k}}{\hat{\psi}_\alpha(0)}{\phi_0} = \abs{\varphi_{-\vb{k}}(0)}^2\delta_{\alpha,\beta} \Theta(k_F - k);
@@ -162,13 +162,14 @@ iG_{\alpha,\beta}^0(\vb{k},\omega) = \delta_{\alpha,\beta} \bqty{\frac{\Theta\pq
 \newpage
 \section{Second Exercise}
 
-\noindent In the following steps we are going to compute the mean value of the total number operator $\hat{N}$ and the total energy $E$ of an non interacting system of electrons.
+\noindent In the following steps we are going to compute the mean value of the total number operator $\hat{N}$ and the total energy $E_0$ of an non interacting system of electrons.
+\medskip
 
 The density for a generic operator $\hat{J} $ in second quantization is expressed as a function of the first quantized operator $J_{\alpha,\beta}$
 \begin{equation}
 \hat{j}(\vb{x}) = \hat{\psi}^\dag_\beta(\vb{x}) J_{\beta\alpha}(\vb{x})\hat{\psi}_\alpha(\vb{x});
 \end{equation}
-given this expression the mean value of the $\hat{j}(\vb{x})$ operator density over the ground state $\ket{\phi_0}$ can be expressed as:
+given this expression the mean value of the $\hat{j}(\vb{x})$ operator density over the ground state $\ket{\psi_0}$ can be expressed as:
 \begin{equation}
 \mel{\psi_0}{\hat{j}(\vb{x})}{\psi_0} = \pm i \lim_{\substack{\vb{x}'\rightarrow \vb{x}\\t'\rightarrow t^+}} \Tr\bqty{J(\vb{x})G(\vb{x},t,\vb{x}',t')} \label{eq:meanvalue}
 \end{equation}
@@ -194,14 +195,35 @@ which, performing the final spatial limit, becomes:
 \end{equation}
 An integration over $\vb{x}$ allows us to pass from the mean value of $\hat{n}(\vb{x})$ to the one of $\hat{N}:$
 \begin{align}
-\mel{\psi_0}{\hat{N}}{\psi_0} &= \int \dd{x}\frac{1}{V} \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \sum_{\abs{\vb{k}}< k_F} 1\\
+\mel{\psi_0}{\hat{N}}{\psi_0} &= \int \dd[3]{\vb{x}}\frac{1}{V} \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \sum_{\abs{\vb{k}}< k_F} 1\\
 &= \sum_{\alpha,\beta} \delta_{\alpha\beta}\delta_{\beta\alpha} \sum_{\abs{\vb{k}}< k_F} 1
 \end{align}
 The remaining sum over $\vb{k}$ is none but the number $N$ of $\vb{k}$ states inside the Fermi sphere, while the sum over $\alpha$ and $\beta$ is the trace of the identity of the spin space, namely the spin space dimension, which is equal to $2s+1$ for half-integer values.
-The mean value of the number operator $\hat{N}$ for a non interacting system of electrons is:
+The mean value of the number operator $\hat{N}$ for a non interacting system of electrons is then:
 \begin{equation}
 \mel{\psi_0}{\hat{N}}{\psi_0} = 2N.
 \end{equation}
+
+\medskip
+To compute the total ground state energy $E_0$ of a non interacting system of electrons it is sufficient to compute the kinetic contribution $\hat{T}$ to the Hamiltonian $\hat{H} = \hat{T} + \hat{V}$ since the interaction potential is null by definition.
+The mean value of the $\hat{T}$ operator is defined as
+\begin{equation}
+\mel{\psi_0}{\hat{T}}{\psi_0} = -i\int \dd[3]{\vb{x}} \lim_{\substack{\vb{x}'\rightarrow\vb{x}\\t'\rightarrow t^+}} -\frac{\hbar^2\nabla^2}{2m}\sum_{\alpha,\beta}\delta_{\alpha\beta}G^0_{\beta\alpha}\pqty{\vb{x},t,\vb{x}',t'}
+\end{equation}
+which, in the special case of a non interacting system of electrons, becomes:
+\begin{align}
+\mel{\psi_0}{\hat{T}}{\psi_0} &=\frac{1}{V}\sum_{\alpha,\beta}\delta_{\alpha\beta}\delta_{\beta\alpha} \int \dd[3]{\vb{x}}\lim_{\substack{\vb{x}'\rightarrow\vb{x}\\t'\rightarrow t^+}} \frac{\hbar^2\nabla^2}{2m} \sum_{\vb{k}}  e^{i\vb{k}\cdot(\vb{x} - \vb{x'})}e^{-i\omega_k (t-t')} \times\\
+&\quad\times\bqty{\Theta(t-t')\Theta(k-k_F) - \Theta(t'-t)\Theta(k_F - k)}\\
+&= -\frac{2s+1}{V}\int \dd[3]{\vb{x}} \lim_{\vb{x}'\rightarrow\vb{x}} \frac{\hbar^2\nabla^2}{2m} \sum_{\vb{k}}  e^{i\vb{k}\cdot(\vb{x} - \vb{x'})}\Theta(k_F - k)\\
+&= +\frac{2s+1}{V}\int \dd[3]{\vb{x}} \lim_{\vb{x}'\rightarrow\vb{x}} \sum_{\vb{k}} \frac{\hbar^2\vb{k}^2}{2m}   e^{i\vb{k}\cdot(\vb{x} - \vb{x'})}\Theta(k_F - k)\\
+&=\frac{2s+1}{V} \sum_{\abs{\vb{k}}<k_F} \frac{\hbar^2\vb{k}^2}{2m} \int \dd[3]{\vb{x}} \underbrace{\lim_{\vb{x}'\rightarrow\vb{x}} e^{i\vb{k}\cdot(\vb{x} - \vb{x'})}}_{\rightarrow 1}\\
+&= \pqty{2s+1} \sum_{\abs{\vb{k}}<k_F} \frac{\hbar^2\vb{k}^2}{2m}.
+\end{align}
+Substituting the spin value $s=1/2$ of the electrons we obtain in the end:
+\begin{equation}
+E_0 = 2 \sum_{\abs{\vb{k}}<k_F} \frac{\hbar^2\vb{k}^2}{2m}.
+\end{equation}
+
 
 
 

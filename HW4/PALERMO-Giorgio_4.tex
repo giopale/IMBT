@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 
 %% Language and font encodings
-\usepackage[english,italian]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 
@@ -52,6 +52,22 @@
 \newcommand{\stanis}{\frac{e^{-\beta\hat{K}}}{Z_G}}
 \newcommand{\lisa}{\lim_{\substack{\tau_1'\rightarrow\tau_1^+\\\tau_2'\rightarrow\tau_2^+}}}
 
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
+
+
+
+\newcommand{\Ta}{\Theta\pqty{\abs{\va{p}+\va{q}}-k_F}}
+\newcommand{\Taa}{\Theta\pqty{k_F - \abs{\va{p}+\va{q}}}}
+
+\newcommand{\Tb}{\Theta\pqty{\abs{\va{p} + \va{k} + \va{q}}-k_F}}
+\newcommand{\Tbb}{\Theta\pqty{k_F - \abs{\va{p} + \va{k} + \va{q}}}}
+
+\newcommand{\Tc}{\Theta\pqty{\abs{\va{p}+\va{k}}-k_F}}
+\newcommand{\Tcc}{\Theta\pqty{k_F -\abs{\va{p}+\va{k}}}}
+
+\newcommand{\Td}{\Theta\pqty{\abs{\va{p}}-k_F}}
+\newcommand{\Tdd}{\Theta\pqty{k_F -\abs{\va{p}}}}
+
 \title{Domanda SubNuc}
 \author{Giorgio Palermo}
 
@@ -84,6 +100,121 @@ Date: June 15, 2020
 \textbf{HOMEWORK 4}
 \end{center}
 
+\section*{Exercise 4.1}
+As first step we show that the $(a), (c), (d), (e)$ first order contributions to the proper polarization (\ref{fig:first_order}) are vanishing.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = .7\textwidth]{First_order.png}
+\caption{All first-order contributions to proper polarization.}
+\label{fig:first_order}
+\end{figure}
+
+We continue with the evaluation of the $(b)$ term in \ref{fig:first_order} with the aim of computing the $(b)$ first order contribution to the correlation energy $E_2^b.$
+\begin{figure}[h]
+\centering
+\includegraphics[width=.3\textwidth]{b_diagram.png}
+\caption{$(b)$ contribution to proper polarization.}
+\label{fig:b_diagram}
+\end{figure}
+In figure \ref{fig:b_diagram} the diagram is written in momentum space with the momentum conserved at each node; the spin part is omitted since it's easily proven that its contraction gives a $2s+1 \overset{s=1/2}{\rightarrow} 2 $ factor; this is due to the fact that each non interacting GF is diagonal in spin space and the interaction is spin-independent.
+The analytic expression associated to the diagram in \eqref{fig:b_diagram} is:
+\begin{align*}
+\qq{UP* EXPRESSION AS GGGUG}
+\end{align*}
+that can be written explicitly knowing the expression of the GF for free fermions in momentum space as:
+\begin{align*}
+\int \frac{\dd[4]{q}}{(2\pi)^4}U(q)\Pi^*(q) = -\frac{2(4\pi e)^2}{(2\pi)^{12}} \pqty{\frac{i}{\hbar}}^2 &\int \dd[4]{q}\dd[4]{p}\dd[4]{k}\frac{1}{q^2 k^2}
+\bqty{\frac{\Ta}{p^0 +q^0 -\omega_{\va{p} + \va{q}} + i\eta} + \frac{\Taa}{p^0+q^0 -\omega_{\va{p}+\va{q}}-i\eta}}\times\\
+&\times \bqty{\frac{\Tb}{p^0+q^0+k^0 - \omega_{\va{p}+\va{k}+\va{q}}+i\eta} + \frac{\Tbb}{p^0+q^0+k^0 - \omega_{\va{p}+\va{k}+\va{q}}-i\eta} }\times\\
+&\times \bqty{\frac{\Tc}{p^0+k^0 - \omega_{\va{p}+\va{k}}+i\eta} + \frac{\Tcc}{p^0+k^0 - \omega_{\va{p}+\va{k}}-i\eta} }\times\\
+&\times \bqty{\frac{\Td}{p^0 - \omega_{\va{p}}+i\eta} + \frac{\Tdd}{p^0 - \omega_{\va{p}}-i\eta} }.\numberthis 
+\end{align*}
+The evaluation of this integral starts from the temporal component $k^0$ relative to the four-vector $k.$
+Observing the expression we note that some of the products involved in the $k^0$ integration present both poles on the same side (above or below) of the $k^0$ complex plane; this means that the integral on the real variable $k^0$ can be extended to an integration on the complex plane that does not include any pole and is therefore vanishing.
+For this reason we can rearrange the previous expression keeping only the non vanishing terms:
+\begin{align*}
+= -\frac{2(4\pi e)^2}{(2\pi)^{12}} \pqty{\frac{i}{\hbar}}^2 \int \dd[4]{q}\dd[4]{p}\dd[4]{k}&\frac{1}{q^2 k^2}
+\bqty{\frac{\Ta}{p^0 +q^0 -\omega_{\va{p} + \va{q}} + i\eta} + \frac{\Taa}{p^0+q^0 -\omega_{\va{p}+\va{q}}-i\eta}}\times\\
+&\times \bqty{\frac{\Td}{p^0 - \omega_{\va{p}}+i\eta} + \frac{\Tdd}{p^0 - \omega_{\va{p}}-i\eta} }\times\\
+&\times \left[\frac{\Tcc\Tb}{\pqty{p^0+k^0 - \omega_{\va{p}+\va{k}}-i\eta}\pqty{p^0+q^0+k^0 - \omega_{\va{p}+\va{k}+\va{q}}+i\eta}} \right.+\\
+&+\left. \frac{\Tc\Tbb}{\pqty{p^0+k^0 - \omega_{\va{p}+\va{k}}+i\eta}\pqty{p^0+q^0+k^0 - \omega_{\va{p}+\va{k}+\va{q}}-i\eta}}\right]\numberthis .
+\end{align*}
+The integral over $k^0$ can be evaluated computing the residues at $\bar{q}^0_a = p^0 +\omega_{\va{p}+\va{k}} +i\eta$ for the first term and at $\bar{q}^0_b = p^0 +\omega_{\va{p}+\va{k}} -i\eta$ for the second one, obtaining:
+\begin{align*}
+= -\frac{2(4\pi e)^2}{(2\pi)^{12}} \pqty{\frac{i}{\hbar}}^2 \int \dd[4]{q}\dd[4]{p}\dd[4]{k}&\frac{1}{q^2 k^2}
+\bqty{\frac{\Ta}{p^0 +q^0 -\omega_{\va{p} + \va{q}} + i\eta} + \frac{\Taa}{p^0+q^0 -\omega_{\va{p}+\va{q}}-i\eta}}\times\\
+&\times \bqty{\frac{\Td}{p^0 - \omega_{\va{p}}+i\eta} + \frac{\Tdd}{p^0 - \omega_{\va{p}}-i\eta} }\times\\
+&\times \left[\frac{\Tcc\Tb}{p^0+q^0+ \omega_{\va{p}+\va{k}}- \omega_{\va{p}+\va{k}+\va{q}}+i\eta} \right.-\\
+&-\left. \frac{\Tc\Tbb}{p^0+q^0+ \omega_{\va{p}+\va{k}}- \omega_{\va{p}+\va{k}+\va{q}}-i\eta}\right]\numberthis .
+\end{align*}
+An analogous procedure helps us to compute the integration over the $p^0$ temporal component; in this case the expression to evaluate is:
+\begin{align*}
+= -\frac{2(4\pi e)^2}{(2\pi)^{12}} \pqty{\frac{i}{\hbar}}^2 \int \dd[4]{q}\dd[4]{p}\dd[4]{k}&\frac{1}{q^2 k^2}
+\left[\frac{\Ta\Tdd}{\pqty{p^0 +q^0 -\omega_{\va{p} + \va{q}} + i\eta}\pqty{ p^0 - \omega_{\va{p}}-i\eta}}\right.\\
+& + \left.\frac{\Taa\Td}{\pqty{p^0 +q^0 -\omega_{\va{p} + \va{q}} - i\eta}\pqty{ p^0 - \omega_{\va{p}}+i\eta}}\right]\times\\
+&\times \left[\frac{\Tcc\Tb}{p^0+q^0+ \omega_{\va{p}+\va{k}}- \omega_{\va{p}+\va{k}+\va{q}}+i\eta} \right.+\\
+&+\left. \frac{\Tc\Tbb}{p^0+q^0+ \omega_{\va{p}+\va{k}}- \omega_{\va{p}+\va{k}+\va{q}}-i\eta}\right]\numberthis .
+\end{align*}
+and the poles to compute the residues are located respectively at $p^0_a = \omega_{\va{p}} + i\eta$ and at $p^0_b = \omega_{\va{p}} - i\eta.$
+The result is the following:
+\begin{align*}
+ \qq{GF POST P0 EVALUATION}
+\end{align*}
+The last integration is over the $q^0$ temporal part:
+\begin{align*}
+\qq{GF PRE Q0 EVALUATION}
+\end{align*}
+and the concerned poles are $q^0_a = \omega_{\va{p}+\va{q}} -\omega_{\va{p}} -i \eta $ and $q^0_b = \omega_{\va{p}+\va{q}} -\omega_{\va{p}} +i \eta:$
+\begin{align*}
+\qq{GF POST Q0 EVALUATION}
+\end{align*}
+Note that we removed the complex $i\eta$ terms since the temporal part has been completely evaluated.
+Now we proceed with a change of variables in order to exploit the symmetry of the expression and simplify one of the addends; the change
+\begin{equation}
+\qq{CHANGE OF VARIABLES 1}
+\end{equation}
+applied to the second addend modifies the numerator to:
+\begin{equation}
+\qq{MODIFIED NUMERATOR}
+\end{equation}
+which allows us to write the integral as:
+\begin{align*}
+\qq{ONE TERM GF}
+\end{align*}
+On the other hand, the denominator can also be written more explicitly as:
+\begin{align*}
+\qq{DENOMINATOR REWRITTEN}
+\end{align*}
+A scaling of the variables by a $k_F^{-1}$ factor brings in front an overall $k_F^3 factor;$ simplifying some factors one gets:
+\begin{align*}
+ \qq{FINAL EXPR FOR UP*}
+\end{align*}
+The second order $(b)$ energy contribution differs from the expression we computed for a $i\hbar V /2/(2\pi^4)$ factor; gathering all the factors together we get:
+\begin{align*}
+\qq{FACTOR COMPUTATION}
+\end{align*}
+and therefore the expression for the second order contribution to the correlation energy is
+\begin{align}
+\qq{FINAL FORMULA}
+\end{align}
+as we wanted to prove.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section*{Exercise 7.1}
@@ -96,19 +227,24 @@ where $O_{\alpha\beta}(\va{x})$ is the first quantized form of the operator $\ha
 In analogy it is possible to define an ensemble average for a two particle operator in second quantization which, in the specific case of the interparticle potential $\hat{V}(\va{x} - \va{x}')$ is written as:
 \begin{equation}
 \meanv{\hat{V}} = \Tr{\hat{\rho}_G\hat{V}} = \int\dd[3]{\va{x}_1}\dd[3]{\va{x}_2} \lim_{\substack{\va{x}_1'\rightarrow\va{x}_1\\\va{x}_2'\rightarrow\va{x}_2}} 
-V_{\substack{\mu\mu'\\\lambda\lambda'}}(\va{x}_1 - \va{x}_2)\Tr{\frac{e^{-\beta\hat{K}}}{Z_G}\hat{\psi}^\dag_{\lambda'}(\va{x}_1')\hat{\psi}^\dag_{\mu'}(\va{x}_2')\hat{\psi}_\mu(\va{x}_2)\hat{\psi}_\lambda(\va{x}_1)}
+V_{\substack{\mu\mu'\\\lambda\lambda'}}(\va{x}_1 - \va{x}_2)
+\Tr{\frac{e^{-\beta\hat{K}}}{Z_G}
+\hat{\psi}^\dag_{\lambda'}(\va{x}_1')\hat{\psi}^\dag_{\mu'}(\va{x}_2')\hat{\psi}_\mu(\va{x}_2)\hat{\psi}_\lambda(\va{x}_1)}
 \label{eq:mean_potential}
 \end{equation}
-Now, it is possible to connect the previous definition to the one of the two particle temperature Green function:
+Now it is possible to connect the previous definition to the one of the two particle temperature Green function:
 \begin{equation}
 \mathcal{G}_{\alpha\beta;\gamma\delta}(\va{x}_1\tau_1,\va{x}_2\tau_2;\va{x}_1'\tau_1',\va{x_2}'\tau_2')
-= \Tr{\hat{\rho}_G T\bqty{\hat{\psi}_\alpha(\va{x}_1\tau_1) \hat{\psi}_\beta(\va{x}_2\tau_2);\hat{\psi}_\gamma(\va{x}_2'\tau_2') \hat{\psi}_\delta(\va{x}_1'\tau_1')}}
+= \Tr{\hat{\rho}_G T\bqty{\hat{\psi}_\alpha(\va{x}_1\tau_1) \hat{\psi}_\beta(\va{x}_2\tau_2)\hat{\psi}_\delta^\dag(\va{x}_2'\tau_2') \hat{\psi}_\gamma^\dag(\va{x}_1'\tau_1')}}
 \label{eq:temp_GF}
 \end{equation}
 by proving that the trace in expression \eqref{eq:mean_potential} is equal to 
 \begin{equation}
 \lim_{\substack{\tau_1'\rightarrow\tau_1^+\\\tau_2'\rightarrow\tau_2^+}}
-\Tr{\frac{e^{-\beta\hat{K}}}{Z_G}\hat{\psi}_{\lambda'}(\va{x}_1\tau_1) \hat{\psi}_{\mu'}(\va{x}_2\tau_2);\hat{\psi}_\mu(\va{x}_2'\tau_2') \hat{\psi}_\lambda(\va{x}_1'\tau_1')}
+\Tr{\frac{e^{-\beta\hat{K}}}{Z_G}
+\hat{\psi}_{\lambda'}^\dag(\va{x}_1'\tau_1') \hat{\psi}_{\mu'}^\dag(\va{x}_2'\tau_2')
+\hat{\psi}_\mu(\va{x}_2\tau_2) \hat{\psi}_\lambda(\va{x}_1\tau_1)}
+\label{eq:time_dep_trace}
 \end{equation}
 where the dime dependence of the fields is given by the modified Heisenberg picture
 \begin{equation}
@@ -133,16 +269,24 @@ The next step is to write down the explicit expression of the trace as a functio
 \end{align}
 which we can rewrite in the same form as present in \eqref{eq:mean_potential}:
 \begin{equation}
-=\Tr{\frac{e^{-\beta\hat{K}}}{Z_G}\hat{\psi}^\dag_{\lambda'}(\va{x}_1')\hat{\psi}^\dag_{\mu'}(\va{x}_2')\hat{\psi}_\mu(\va{x}_2)\hat{\psi}_\lambda(\va{x}_1)}
+\eqref{eq:time_dep_trace}=\Tr{\frac{e^{-\beta\hat{K}}}{Z_G}\hat{\psi}^\dag_{\lambda'}(\va{x}_1')\hat{\psi}^\dag_{\mu'}(\va{x}_2')\hat{\psi}_\mu(\va{x}_2)\hat{\psi}_\lambda(\va{x}_1)}
 \end{equation}
+Taking into account the time limit $\tau_1'\rightarrow\tau_1; \tau_2'\rightarrow\tau_2$ in equation \eqref{eq:time_dep_trace} the argument of the trace can be rewritten in terms of a time-ordered product:
 \begin{equation}
-\qq{¿TIME ORDERED PRODUCT?}
+\frac{e^{-\beta\hat{K}}}{Z_G}
+\hat{\psi}_{\lambda'}^\dag(\va{x}_1'\tau_1') \hat{\psi}_{\mu'}^\dag(\va{x}_2'\tau_2')
+\hat{\psi}_\mu(\va{x}_2\tau_2) \hat{\psi}_\lambda(\va{x}_1\tau_1)
+ = \frac{e^{-\beta\hat{K}}}{Z_G} T\bqty{
+\hat{\psi}_\lambda(\va{x}_1\tau_1) \hat{\psi}_\mu(\va{x}_2\tau_2) 
+\hat{\psi}_{\mu'}^\dag(\va{x}_2'\tau_2') \hat{\psi}_{\lambda'}^\dag(\va{x}_1'\tau_1')
+ }
 \end{equation}
 Therefore, using the definition of the temperature GF \eqref{eq:temp_GF} we can state that the ensemble average of the interparticle potential is:
 \begin{equation}
-\meanv{\hat{V}} = \Tr{\hat{\rho}_G\hat{V}} = \int\dd[3]{\va{x}_1}\dd[3]{\va{x}_2} V_{\substack{\mu\mu'\\\lambda\lambda'}}(\va{x}_1 - \va{x}_2)
-\mathcal{G}_{\lambda\lambda';\mu\mu'}(\va{x}_1\tau_1,\va{x}_2\tau_2;\va{x}_1\tau_1^+,\va{x}_2\tau_2^+).
+\meanv{\hat{V}} = \Tr{\hat{\rho}_G\hat{V}} = \int\dd[3]{\va{x}_1}\dd[3]{\va{x}_2} V_{\substack{\lambda\mu\\\mu'\lambda'}}(\va{x}_1 - \va{x}_2)
+\mathcal{G}_{\substack{\lambda\mu\\\mu'\lambda'}}(\va{x}_1\tau_1,\va{x}_2\tau_2;\va{x}_1\tau_1^+,\va{x}_2\tau_2^+)
 \end{equation}
+as desired.
 
 
 
